@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { Button } from './component/Button';
 import { Tablo } from './component/Tablo';
-
+import styles from './styles.module.css'; 
 
 function App() {
 
@@ -23,9 +23,9 @@ function App() {
   
 
   return (
-    <div className='box'>
+    <div className={styles.box}>
       <Tablo currentCount={count} maxCount={maxValue}/>
-      <div className="button-container">
+      <div className={styles.button_container}>
         <Button callBack={increment} name={"inc"} disabled={count >= maxValue}/>
         <Button callBack={reset} name={"res"} disabled={count === minValue}/>
       </div>

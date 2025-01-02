@@ -1,13 +1,48 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  min-width: 300px;
+  /* окно после 300px идет маштабирование чтобы не появлялся горизонтальный скролл и и конки по одному */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* .no-scroll {
+        overflow: hidden;
+        height: 100%;
+    } */
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  /* убрирает перенос слов */
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  background-color: unset;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  /* убрирает перенос слов */
 }

@@ -1,0 +1,12 @@
+.button {
+    border: none;
+    border-radius: 5px;
+    background-color: #34d4f1;
+    padding: 5px;
+    /* color: black;    */
+}
+
+.disabled {
+    color: red
+}
+

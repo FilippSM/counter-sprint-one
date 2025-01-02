@@ -1,12 +1,12 @@
-body {
+/* body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 
-}
+} */
 
-.box {
+/* .box {
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -15,9 +15,9 @@ body {
   border-radius: 5px;
   padding: 10px;
   box-shadow: 10px 5px 0px;
-}
+} */
 
-.button-container {
+/* .button-container {
   padding: 5px;
   display: flex;       
   gap: 5px; 
@@ -28,10 +28,9 @@ body {
 button {
   border: none;
   border-radius: 5px;
-  background-color: #34d4f1;
-  /* color: black;    */
+  background-color: #34d4f1;   
 }
-
-.disabled {
+ */
+/* .disabled {
   color: red
-}
+} */
