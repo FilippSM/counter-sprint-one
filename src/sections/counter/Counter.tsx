@@ -3,9 +3,15 @@ import styles from './styles.module.css';
 import { Tablo } from "../../component/Tablo";
 import { Button } from "../../component/Button";
 
-export const Counter = () => {
-    const maxValue = 5;
-    const minValue = 0;
+type CounterType = {
+    minValue: number
+    maxValue: number
+}
+
+
+export const Counter = (props: CounterType) => {
+    const maxValue = props.maxValue;
+    const minValue = props.minValue;
 
     const [count, setCount] = useState<number>(minValue);
 
