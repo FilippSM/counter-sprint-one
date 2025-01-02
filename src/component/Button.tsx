@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 type ButtonPropsType = {
     callBack: () => void
     name: string
-    disabled: boolean
+    disabled?: boolean
 };
 
 
