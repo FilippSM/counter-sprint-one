@@ -6,35 +6,36 @@ import { Button } from "../../component/Button";
 type CounterType = {
     minValue: number
     maxValue: number
+    count: number
+    setCount: React.Dispatch<React.SetStateAction<number>>
 }
 
 
 export const Counter = (props: CounterType) => {
-    const maxValue = props.maxValue;
-    const minValue = props.minValue;
+    /* const maxValue = props.maxValue;
+    const minValue = props.minValue; */
   /*   const maxValue = 5;
     const minValue = 0; */
 
-    const [count, setCount] = useState<number>(minValue);
+    /* const [count, setCount] = useState<number>(minValue); */
 
 /*     setCount(minValue) */
 
     const increment = () => {
-        setCount(prevCount => prevCount + 1);
+        props.setCount(prevCount => prevCount + 1);
     };
 
     const reset = () => {
-        setCount(minValue);
+        props.setCount(props.minValue);
     };
-
 
 
     return (
         <div className={styles.box}>
-            <Tablo currentCount={count} maxCount={maxValue} />
+            <Tablo currentCount={props.count} maxCount={props.maxValue} />
             <div className={styles.button_container}>
-                <Button callBack={increment} name={"inc"} disabled={count >= maxValue} />
-                <Button callBack={reset} name={"res"} disabled={count === minValue} />
+                <Button callBack={increment} name={"inc"} disabled={props.count >= props.maxValue} />
+                <Button callBack={reset} name={"res"} disabled={props.count === props.minValue} />
             </div>
         </div>
     )
