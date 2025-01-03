@@ -10,7 +10,7 @@ type SetCounterType = {
 
 export const SetCounter = (props: SetCounterType) => {
     const maxValueStart = 0; // Начальное значение
-    const minValueStart = 0;  // Начальное значение
+    const minValueStart = 0; // Начальное значение
 
    /*  const [countMax, setCountMax] = useState<number>(maxValue);
     const [countMin, setCountMin] = useState<number>(minValue); */
@@ -68,7 +68,7 @@ export const SetCounter = (props: SetCounterType) => {
                 />
             </label>
             <div className={styles.button_container}>
-                <Button callBack={setNumbers} name={"set"} />
+                <Button callBack={setNumbers} name={"set"} disabled={countMax < 0 || countMax <= countMin || countMin < 0 || countMax === countMin}/>
             </div>
             <div>max value: {countMax}</div>
             <div>start value: {countMin}</div>
