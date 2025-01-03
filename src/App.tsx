@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Counter } from './sections/counter/Counter';
 import { SetCounter } from './sections/setCounter/SetCounter';
 
@@ -17,10 +17,28 @@ function App() {
   }
 
 
+  const [message, setMessage] = useState<string>(minValue.toString()); // Начальное значение равно countMin
+
+    // useEffect для отслеживания изменений countMax и countMin
+ /*    useEffect(() => {
+   
+
+        if (minValue < 0 || maxValue < 0 || minValue === maxValue ) {
+            setMessage("Incorrect value");
+        } else {
+            setMessage("Enter values and press set"); 
+        }
+    }, [maxValue, minValue]);  */
+
+  // useEffect для установки начального сообщения при первом рендере
+/*   useEffect(() => {
+    setMessage(minValue.toString());
+  }, []);  */
+
   return (
     <div style={{ display: 'flex' }}>
-      <SetCounter getNumbers={getNumbers} />
-      <Counter maxValue={maxValue} minValue={minValue}  count={count} setCount={setCount}/>
+      <SetCounter getNumbers={getNumbers} setMessage={setMessage} message={message}/>
+      <Counter maxValue={maxValue} minValue={minValue}  count={count} setCount={setCount} message={message}/>
     </div>
   );
 }

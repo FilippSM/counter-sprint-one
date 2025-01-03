@@ -8,6 +8,7 @@ type CounterType = {
     maxValue: number
     count: number
     setCount: React.Dispatch<React.SetStateAction<number>>
+    message: string
 }
 
 
@@ -32,7 +33,7 @@ export const Counter = (props: CounterType) => {
 
     return (
         <div className={styles.box}>
-            <Tablo currentCount={props.count} maxCount={props.maxValue} />
+            <Tablo currentCount={props.count} maxCount={props.maxValue} message={props.message}/>
             <div className={styles.button_container}>
                 <Button callBack={increment} name={"inc"} disabled={props.count >= props.maxValue} />
                 <Button callBack={reset} name={"res"} disabled={props.count === props.minValue} />
