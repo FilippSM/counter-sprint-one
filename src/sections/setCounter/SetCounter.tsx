@@ -9,22 +9,29 @@ type SetCounterType = {
 };
 
 export const SetCounter = (props: SetCounterType) => {
-    const maxValue = 5; // Начальное значение
-    const minValue = 0;  // Начальное значение
+    const maxValueStart = 0; // Начальное значение
+    const minValueStart = 0;  // Начальное значение
 
    /*  const [countMax, setCountMax] = useState<number>(maxValue);
     const [countMin, setCountMin] = useState<number>(minValue); */
 
-    const [countMax, setCountMax] = useState<number>(maxValue);
-    const [countMin, setCountMin] = useState<number>(minValue);
+    const [countMax, setCountMax] = useState<number>(() => {
+        const valueAsString = localStorage.getItem('maxValue');
+        return valueAsString ? JSON.parse(valueAsString) : maxValueStart;
+    });
 
-   /*  useEffect(() => {
-        localStorage.setItem('counterValue', JSON.stringify(countMax))
+    const [countMin, setCountMin] = useState<number>(() => {
+        const valueAsString = localStorage.getItem('minValue');
+        return valueAsString ? JSON.parse(valueAsString) : minValueStart;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('maxValue', JSON.stringify(countMax))
     }, [countMax])
 
     useEffect(() => {
-        localStorage.setItem('counterValue', JSON.stringify(countMin))
-    }, [countMin]) */
+        localStorage.setItem('minValue', JSON.stringify(countMin))
+    }, [countMin])
 
     // Обновляем сообщение при изменении значений
     const handleMaxChange = (value: number) => {
