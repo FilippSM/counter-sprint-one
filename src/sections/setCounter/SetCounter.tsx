@@ -1,19 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import { Button } from "../../component/Button";
 
 type SetCounterType = {
     getNumbers: (maxValue: number, minValue: number) => void;
-    message: string;
-    setMessage: React.Dispatch<React.SetStateAction<string>>;
+    message: string | number;
+    setMessage: React.Dispatch<React.SetStateAction<string | number>>;
 };
 
 export const SetCounter = (props: SetCounterType) => {
     const maxValue = 5; // Начальное значение
     const minValue = 0;  // Начальное значение
 
+   /*  const [countMax, setCountMax] = useState<number>(maxValue);
+    const [countMin, setCountMin] = useState<number>(minValue); */
+
     const [countMax, setCountMax] = useState<number>(maxValue);
     const [countMin, setCountMin] = useState<number>(minValue);
+
+   /*  useEffect(() => {
+        localStorage.setItem('counterValue', JSON.stringify(countMax))
+    }, [countMax])
+
+    useEffect(() => {
+        localStorage.setItem('counterValue', JSON.stringify(countMin))
+    }, [countMin]) */
 
     // Обновляем сообщение при изменении значений
     const handleMaxChange = (value: number) => {
@@ -28,7 +39,7 @@ export const SetCounter = (props: SetCounterType) => {
 
     const setNumbers = () => {
         props.getNumbers(countMax, countMin);
-        props.setMessage(countMin.toString()); // Устанавливаем сообщение на текущее значение countMin при нажатии
+        props.setMessage(countMin); // Устанавливаем сообщение на текущее значение countMin при нажатии
     };
 
     return (

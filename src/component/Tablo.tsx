@@ -3,12 +3,12 @@ import styles from './styles.module.css';
 type TabloPropsType = {
     currentCount: number
     maxCount: number
-    message: string
+    message: string | number
 };
 
 
 export const Tablo = (props: TabloPropsType) => {
-
+    console.log(typeof(props.message))
 
     return (
         <>
@@ -16,10 +16,10 @@ export const Tablo = (props: TabloPropsType) => {
                 style={{ textAlign: 'center', width: '100%' }}
                 className={props.currentCount >= props.maxCount ? styles.disabled : ""}
             >
-                {props.currentCount}
-            </div>
-            <div>{ props.message}</div>
-        </>
+             {/*    {props.currentCount} */}
+             { typeof(props.message) === "string" ? props.message : props.currentCount}  
 
+            </div>
+        </>
     )
 }

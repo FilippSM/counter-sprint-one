@@ -10,6 +10,10 @@ function App() {
   const [minValue, setMinValue] = useState(minStartValue);
   const [count, setCount] = useState(minValue);
 
+
+
+
+  
   const getNumbers = (maxValue: number, minValue: number) => {
     setMaxValue(maxValue)
     setMinValue(minValue)
@@ -17,7 +21,7 @@ function App() {
   }
 
 
-  const [message, setMessage] = useState<string>(minValue.toString()); // Начальное значение равно countMin
+  const [message, setMessage] = useState<string | number>(minValue); // Начальное значение равно countMin
 
     // useEffect для отслеживания изменений countMax и countMin
  /*    useEffect(() => {

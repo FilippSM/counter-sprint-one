@@ -8,7 +8,7 @@ type CounterType = {
     maxValue: number
     count: number
     setCount: React.Dispatch<React.SetStateAction<number>>
-    message: string
+    message: string | number
 }
 
 
