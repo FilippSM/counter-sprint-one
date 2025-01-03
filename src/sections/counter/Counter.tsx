@@ -12,9 +12,12 @@ type CounterType = {
 export const Counter = (props: CounterType) => {
     const maxValue = props.maxValue;
     const minValue = props.minValue;
+  /*   const maxValue = 5;
+    const minValue = 0; */
 
     const [count, setCount] = useState<number>(minValue);
 
+/*     setCount(minValue) */
 
     const increment = () => {
         setCount(prevCount => prevCount + 1);
