@@ -70,9 +70,11 @@ export const SetCounter = (props: SetCounterType) => {
             <div className={styles.button_container}>
                 <Button callBack={setNumbers} name={"set"} disabled={countMax < 0 || countMax <= countMin || countMin < 0 || countMax === countMin}/>
             </div>
-            <div>max value: {countMax}</div>
+            {/* для проверки значений */}
+            {/* <div>max value: {countMax}</div>
             <div>start value: {countMin}</div>
-            <div>{props.message}</div> {/* Отображаем текущее сообщение */}
+            <div>{props.message}</div>  */}{/* //Отображаем текущее сообщение  */}
         </div>
     );
 }
+

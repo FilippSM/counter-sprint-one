@@ -35,7 +35,7 @@ export const Counter = (props: CounterType) => {
         <div className={styles.box}>
             <Tablo currentCount={props.count} maxCount={props.maxValue} message={props.message}/>
             <div className={styles.button_container}>
-                <Button callBack={increment} name={"inc"} disabled={props.count >= props.maxValue} />
+                <Button callBack={increment} name={"inc"} disabled={props.count >= props.maxValue || props.message === "Incorrect value"} />
                 <Button callBack={reset} name={"res"} disabled={props.count === props.minValue} />
             </div>
         </div>

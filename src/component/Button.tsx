@@ -18,3 +18,4 @@ export const Button = (props: ButtonPropsType) => {
         </button>
     );
 }
+

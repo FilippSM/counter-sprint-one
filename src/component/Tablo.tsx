@@ -14,7 +14,8 @@ export const Tablo = (props: TabloPropsType) => {
         <>
             <div
                 style={{ textAlign: 'center', width: '100%' }}
-                className={props.currentCount >= props.maxCount ? styles.disabled : ""}
+                className={props.currentCount >= props.maxCount || props.message === "Incorrect value" ? styles.disabled : ""}
+                
             >
              {/*    {props.currentCount} */}
              { typeof(props.message) === "string" ? props.message : props.currentCount}  
@@ -23,3 +24,5 @@ export const Tablo = (props: TabloPropsType) => {
         </>
     )
 }
+
+{/* <div className={props.message === "Incorrect value" ? styles.errorMessage : ""}></div> */}
