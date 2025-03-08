@@ -17,35 +17,22 @@ function App() {
   const [minValue, setMinValue] = useState(minStartValue);
   const [count, setCount] = useState(minValue);
 
-  const message = useAppSelector(selectMessage);
-  /* const [message, setMessage] = useState<string | number>(minValue); */
-
   const getNumbers = (maxValue: number, minValue: number) => {
     setMaxValue(maxValue)
     setMinValue(minValue)
     setCount(minValue);
   }
 
-  // Начальное значение равно countMin
-
-
-  const setMessage = () => {
-    dispath(changeMessageAC({ message }))
-  }
-
   return (
     <div style={{ display: 'flex' }}>
       <SetCounter
         getNumbers={getNumbers}
-        setMessage={setMessage}
-        message={message}
       />
       <Counter
         maxValue={maxValue}
         minValue={minValue}
         count={count}
         setCount={setCount}
-        message={message}
       />
     </div>
   );

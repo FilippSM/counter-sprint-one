@@ -1,12 +1,14 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
 import { messageReducer } from '../model/message-reducer'
+import { setCounterReducer } from '../model/setCounter-reducer'
 
  
 // объединение reducer'ов с помощью combineReducers
 const rootReducer = combineReducers({
 /*   tasks: tasksReducer,
   todolists: todolistsReducer, */
-  message: messageReducer
+  message: messageReducer,
+  setCounter: setCounterReducer
 })
  
 // создание store

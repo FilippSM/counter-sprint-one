@@ -1,20 +1,42 @@
 import { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import { Button } from "../../component/Button";
+import { useAppDispatch } from "../../hook/useAppDispatch";
+import { useAppSelector } from "../../hook/useAppSelector";
+import { selectSetCounter } from "../../model/setCounter-selectors";
+import { changeCountMaxAC, changeCountMinAC } from "../../model/setCounter-reducer";
+import { selectMessage } from "../../model/message-selectors";
+import { changeMessageAC, TypeMessage } from "../../model/message-reducer";
 
 type SetCounterType = {
     getNumbers: (maxValue: number, minValue: number) => void;
-    message: string | number;
-    setMessage: React.Dispatch<React.SetStateAction<string | number>>;
+   /*  message: string | number;
+    setMessage: React.Dispatch<React.SetStateAction<string | number>>; */
 };
 
 export const SetCounter = (props: SetCounterType) => {
-    const maxValueStart = 0; // Начальное значение
-    const minValueStart = 0; // Начальное значение
+    const dispath = useAppDispatch();
 
-    const [countMax, setCountMax] = useState<number>(maxValueStart)
-    const [countMin, setCountMin] = useState<number>(minValueStart)
+    /*  const maxValueStart = 0; // Начальное значение
+     const minValueStart = 0; // Начальное значение
  
+     const [countMax, setCountMax] = useState<number>(maxValueStart)
+     const [countMin, setCountMin] = useState<number>(minValueStart) */
+
+    const setCount = useAppSelector(selectSetCounter);
+    let countMax = setCount.countMax
+    let countMin = setCount.countMin
+
+    const setCountMax = (value: number) => {
+        dispath(changeCountMaxAC({ countMax: value }))
+    }
+    const setCountMin = (value: number) => {
+        dispath(changeCountMinAC({ countMin: value }))
+    }
+
+    const setMessage = (message: TypeMessage) => {
+        dispath(changeMessageAC({ message }))
+    }
 
     //логика для local storage
     /* const [countMax, setCountMax] = useState<number>(() => {
@@ -38,17 +60,17 @@ export const SetCounter = (props: SetCounterType) => {
     // Обновляем сообщение при изменении значений
     const handleMaxChange = (value: number) => {
         setCountMax(value);
-        props.setMessage(value < 0 || value <= countMin ? "Incorrect value" : "Enter values and press set");
+        setMessage(value < 0 || value <= countMin ? "Incorrect value" : "Enter values and press set");
     };
 
     const handleMinChange = (value: number) => {
         setCountMin(value);
-        props.setMessage(value < 0 || value >= countMax ? "Incorrect value" : "Enter values and press set");
+        setMessage(value < 0 || value >= countMax ? "Incorrect value" : "Enter values and press set");
     };
 
     const setNumbers = () => {
         props.getNumbers(countMax, countMin);
-        props.setMessage(countMin); // Устанавливаем сообщение на текущее значение countMin при нажатии
+        setMessage(countMin); // Устанавливаем сообщение на текущее значение countMin при нажатии
     };
 
     return (
@@ -72,10 +94,6 @@ export const SetCounter = (props: SetCounterType) => {
             <div className={styles.button_container}>
                 <Button callBack={setNumbers} name={"set"} disabled={countMax < 0 || countMax <= countMin || countMin < 0 || countMax === countMin} />
             </div>
-            {/* для проверки значений */}
-            {/* <div>max value: {countMax}</div>
-            <div>start value: {countMin}</div>
-            <div>{props.message}</div>  */}{/* //Отображаем текущее сообщение  */}
         </div>
     );
 }
