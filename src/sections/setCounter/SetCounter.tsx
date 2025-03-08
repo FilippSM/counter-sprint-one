@@ -12,9 +12,6 @@ export const SetCounter = (props: SetCounterType) => {
     const maxValueStart = 0; // Начальное значение
     const minValueStart = 0; // Начальное значение
 
-   /*  const [countMax, setCountMax] = useState<number>(maxValue);
-    const [countMin, setCountMin] = useState<number>(minValue); */
-
     const [countMax, setCountMax] = useState<number>(() => {
         const valueAsString = localStorage.getItem('maxValue');
         return valueAsString ? JSON.parse(valueAsString) : maxValueStart;
@@ -53,22 +50,22 @@ export const SetCounter = (props: SetCounterType) => {
         <div className={styles.box}>
             <label>
                 <span>max value: </span>
-                <input 
-                    type="number" 
-                    value={countMax} 
+                <input
+                    type="number"
+                    value={countMax}
                     onChange={e => handleMaxChange(Number(e.currentTarget.value))}
                 />
             </label>
             <label>
                 <span>start value: </span>
-                <input 
-                    type="number" 
-                    value={countMin} 
+                <input
+                    type="number"
+                    value={countMin}
                     onChange={e => handleMinChange(Number(e.currentTarget.value))}
                 />
             </label>
             <div className={styles.button_container}>
-                <Button callBack={setNumbers} name={"set"} disabled={countMax < 0 || countMax <= countMin || countMin < 0 || countMax === countMin}/>
+                <Button callBack={setNumbers} name={"set"} disabled={countMax < 0 || countMax <= countMin || countMin < 0 || countMax === countMin} />
             </div>
             {/* для проверки значений */}
             {/* <div>max value: {countMax}</div>
