@@ -1,35 +1,47 @@
-import { useState } from "react";
-import styles from './styles.module.css'; 
-import { Tablo } from "../../component/Tablo";
+import { useEffect, useState } from "react";
 import { Button } from "../../component/Button";
+import { Tablo } from "../../component/Tablo";
 import { useAppSelector } from "../../hook/useAppSelector";
 import { selectMessage } from "../../model/message-selectors";
+import { selectValues } from "../../model/setValues-selectors";
+import styles from './styles.module.css';
+import { useAppDispatch } from "../../hook/useAppDispatch";
+import { changeCountAC } from "../../model/count-reducer";
+import { selectCount } from "../../model/count-selectors";
 
-type CounterType = {
-    minValue: number
-    maxValue: number
-    count: number
-    setCount: React.Dispatch<React.SetStateAction<number>>
-}
+export const Counter = () => {
+    const dispath = useAppDispatch();
 
-export const Counter = (props: CounterType) => {
     const message = useAppSelector(selectMessage);
+    const values = useAppSelector(selectValues);
+
+    /*     const [count, setCount] = useState(values.minValue); */
+
+    const setCount = (value: number) => {
+        dispath(changeCountAC({ count: value }))
+    }
+
+    const count = useAppSelector(selectCount);
+
+    useEffect(() => {
+        setCount(values.minValue);
+    }, [values.minValue]); // Устанавливаем count при изменении minValue
 
     const increment = () => {
-        props.setCount(prevCount => prevCount + 1);
+        setCount(count + 1);
     };
 
     const reset = () => {
-        props.setCount(props.minValue);
+        setCount(values.minValue);
     };
 
 
     return (
         <div className={styles.box}>
-            <Tablo currentCount={props.count} maxCount={props.maxValue} message={message}/>
+            <Tablo currentCount={count} maxCount={values.maxValue} message={message} />
             <div className={styles.button_container}>
-                <Button callBack={increment} name={"inc"} disabled={props.count >= props.maxValue || message === "Incorrect value"} />
-                <Button callBack={reset} name={"res"} disabled={props.count === props.minValue} />
+                <Button callBack={increment} name={"inc"} disabled={count >= values.maxValue || message === "Incorrect value"} />
+                <Button callBack={reset} name={"res"} disabled={count === values.minValue} />
             </div>
         </div>
     )

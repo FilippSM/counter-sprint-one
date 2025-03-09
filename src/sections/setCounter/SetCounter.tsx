@@ -1,20 +1,14 @@
-import { useEffect, useState } from "react";
-import styles from './styles.module.css';
 import { Button } from "../../component/Button";
 import { useAppDispatch } from "../../hook/useAppDispatch";
 import { useAppSelector } from "../../hook/useAppSelector";
-import { selectSetCounter } from "../../model/setCounter-selectors";
-import { changeCountMaxAC, changeCountMinAC } from "../../model/setCounter-reducer";
-import { selectMessage } from "../../model/message-selectors";
 import { changeMessageAC, TypeMessage } from "../../model/message-reducer";
+import { changeCountMaxAC, changeCountMinAC } from "../../model/setCounter-reducer";
+import { selectSetCounter } from "../../model/setCounter-selectors";
+import { changeMaxValueAC, changeMinValueAC } from "../../model/setValues-reducer";
+import styles from './styles.module.css';
 
-type SetCounterType = {
-    getNumbers: (maxValue: number, minValue: number) => void;
-   /*  message: string | number;
-    setMessage: React.Dispatch<React.SetStateAction<string | number>>; */
-};
 
-export const SetCounter = (props: SetCounterType) => {
+export const SetCounter = () => {
     const dispath = useAppDispatch();
 
     /*  const maxValueStart = 0; // Начальное значение
@@ -36,6 +30,13 @@ export const SetCounter = (props: SetCounterType) => {
 
     const setMessage = (message: TypeMessage) => {
         dispath(changeMessageAC({ message }))
+    }
+
+    const setMaxValue = (value: number) => {
+        dispath(changeMaxValueAC({ maxValue: value }))
+    }
+    const setMinValue = (value: number) => {
+        dispath(changeMinValueAC({ minValue: value }))
     }
 
     //логика для local storage
@@ -69,7 +70,8 @@ export const SetCounter = (props: SetCounterType) => {
     };
 
     const setNumbers = () => {
-        props.getNumbers(countMax, countMin);
+        setMaxValue(countMax)
+        setMinValue(countMin)
         setMessage(countMin); // Устанавливаем сообщение на текущее значение countMin при нажатии
     };
 
