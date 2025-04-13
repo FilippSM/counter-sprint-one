@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button } from "../../component/Button";
 import { useAppDispatch } from "../../hook/useAppDispatch";
 import { useAppSelector } from "../../hook/useAppSelector";
@@ -9,7 +10,7 @@ import styles from './styles.module.css';
 
 
 export const SetCounter = () => {
-    const dispath = useAppDispatch();
+    const dispatch = useAppDispatch();
 
     /*  const maxValueStart = 0; // Начальное значение
      const minValueStart = 0; // Начальное значение
@@ -21,22 +22,40 @@ export const SetCounter = () => {
     let countMax = setCount.countMax
     let countMin = setCount.countMin
 
+    // Загрузка значений из localStorage при монтировании компонента
+    useEffect(() => {
+        const storedMaxValue = localStorage.getItem('maxValue');
+        const storedMinValue = localStorage.getItem('minValue');
+
+        if (storedMaxValue) {
+            dispatch(changeCountMaxAC({ countMax: JSON.parse(storedMaxValue) }));
+        }
+        if (storedMinValue) {
+            dispatch(changeCountMinAC({ countMin: JSON.parse(storedMinValue) }));
+        }
+    }, [dispatch]);
+
+
+
+
+
+
     const setCountMax = (value: number) => {
-        dispath(changeCountMaxAC({ countMax: value }))
+        dispatch(changeCountMaxAC({ countMax: value }))
     }
     const setCountMin = (value: number) => {
-        dispath(changeCountMinAC({ countMin: value }))
+        dispatch(changeCountMinAC({ countMin: value }))
     }
 
     const setMessage = (message: TypeMessage) => {
-        dispath(changeMessageAC({ message }))
+        dispatch(changeMessageAC({ message }))
     }
 
     const setMaxValue = (value: number) => {
-        dispath(changeMaxValueAC({ maxValue: value }))
+        dispatch(changeMaxValueAC({ maxValue: value }))
     }
     const setMinValue = (value: number) => {
-        dispath(changeMinValueAC({ minValue: value }))
+        dispatch(changeMinValueAC({ minValue: value }))
     }
 
     //логика для local storage
@@ -73,6 +92,9 @@ export const SetCounter = () => {
         setMaxValue(countMax)
         setMinValue(countMin)
         setMessage(countMin); // Устанавливаем сообщение на текущее значение countMin при нажатии
+    
+        localStorage.setItem('maxValue', JSON.stringify(countMax));
+        localStorage.setItem('minValue', JSON.stringify(countMin));
     };
 
     return (

@@ -18,8 +18,10 @@ export const Tablo = (props: TabloPropsType) => {
                 
             >
              {/*    {props.currentCount} */}
-             { typeof(props.message) === "string" ? props.message : props.currentCount}  
-
+             { typeof(props.message) === "string" ? props.message : props.currentCount
+             
+             }  
+            
             </div>
         </>
     )

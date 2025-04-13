@@ -21,7 +21,10 @@ export const Counter = () => {
         dispath(changeCountAC({ count: value }))
     }
 
-    const count = useAppSelector(selectCount);
+/*     const count = useAppSelector(selectCount); */
+    const count = useAppSelector(selectCount) || values.minValue;
+
+
 
     useEffect(() => {
         setCount(values.minValue);

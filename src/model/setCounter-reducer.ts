@@ -17,6 +17,12 @@ export const changeCountMaxAC = createAction<{ countMax: number }>(
 export const changeCountMinAC = createAction<{ countMin: number }>(
     "countMax/changeCountMin"
 );
+/* export const setCountMaxFromLocalStorage = createAction<{ countMax: number }>(
+    "countMax/setCountMaxFromLocalStorage"
+);
+export const setCountMinFromLocalStorage = createAction<{ countMin: number }>(
+    "countMax/setCountMinFromLocalStorage"
+); */
 
 export const setCounterReducer = createReducer(initialState, builder => {
     builder
@@ -26,5 +32,11 @@ export const setCounterReducer = createReducer(initialState, builder => {
         .addCase(changeCountMinAC, (state, action) => {
             state.countMin = action.payload.countMin
         })
+/*         .addCase(setCountMaxFromLocalStorage, (state, action) => {
+            state.countMin = action.payload.countMax
+        })
+        .addCase(setCountMinFromLocalStorage, (state, action) => {
+            state.countMin = action.payload.countMin
+        }) */
 })
 
