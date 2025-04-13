@@ -3,7 +3,7 @@ import { Button } from "../../component/Button";
 import { useAppDispatch } from "../../hook/useAppDispatch";
 import { useAppSelector } from "../../hook/useAppSelector";
 import { changeMessageAC, TypeMessage } from "../../model/message-reducer";
-import { changeCountMaxAC, changeCountMinAC } from "../../model/setCounter-reducer";
+import { changeCountMaxAC, changeCountMinAC, getCountLocalStorageTC, setCountLocalStorageTC } from "../../model/setCounter-reducer";
 import { selectSetCounter } from "../../model/setCounter-selectors";
 import { changeMaxValueAC, changeMinValueAC } from "../../model/setValues-reducer";
 import styles from './styles.module.css';
@@ -12,18 +12,12 @@ import styles from './styles.module.css';
 export const SetCounter = () => {
     const dispatch = useAppDispatch();
 
-    /*  const maxValueStart = 0; // Начальное значение
-     const minValueStart = 0; // Начальное значение
- 
-     const [countMax, setCountMax] = useState<number>(maxValueStart)
-     const [countMin, setCountMin] = useState<number>(minValueStart) */
-
     const setCount = useAppSelector(selectSetCounter);
     let countMax = setCount.countMax
     let countMin = setCount.countMin
 
     // Загрузка значений из localStorage при монтировании компонента
-    useEffect(() => {
+  /*   useEffect(() => {
         const storedMaxValue = localStorage.getItem('maxValue');
         const storedMinValue = localStorage.getItem('minValue');
 
@@ -33,12 +27,12 @@ export const SetCounter = () => {
         if (storedMinValue) {
             dispatch(changeCountMinAC({ countMin: JSON.parse(storedMinValue) }));
         }
-    }, [dispatch]);
+    }, [dispatch]); */
 
-
-
-
-
+    //через thunk
+    useEffect(() => {
+        dispatch(getCountLocalStorageTC());
+    }, []);
 
     const setCountMax = (value: number) => {
         dispatch(changeCountMaxAC({ countMax: value }))
@@ -93,8 +87,10 @@ export const SetCounter = () => {
         setMinValue(countMin)
         setMessage(countMin); // Устанавливаем сообщение на текущее значение countMin при нажатии
     
-        localStorage.setItem('maxValue', JSON.stringify(countMax));
-        localStorage.setItem('minValue', JSON.stringify(countMin));
+   /*      localStorage.setItem('maxValue', JSON.stringify(countMax));
+        localStorage.setItem('minValue', JSON.stringify(countMin)); */
+
+        dispatch(setCountLocalStorageTC(countMax, countMin))
     };
 
     return (

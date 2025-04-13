@@ -1,4 +1,4 @@
-import { createAction, createReducer } from "@reduxjs/toolkit"
+import { createAction, createReducer, Dispatch } from "@reduxjs/toolkit"
 
 export type TypeSetCounter = {
     countMax: number;
@@ -17,12 +17,7 @@ export const changeCountMaxAC = createAction<{ countMax: number }>(
 export const changeCountMinAC = createAction<{ countMin: number }>(
     "countMax/changeCountMin"
 );
-/* export const setCountMaxFromLocalStorage = createAction<{ countMax: number }>(
-    "countMax/setCountMaxFromLocalStorage"
-);
-export const setCountMinFromLocalStorage = createAction<{ countMin: number }>(
-    "countMax/setCountMinFromLocalStorage"
-); */
+
 
 export const setCounterReducer = createReducer(initialState, builder => {
     builder
@@ -32,11 +27,22 @@ export const setCounterReducer = createReducer(initialState, builder => {
         .addCase(changeCountMinAC, (state, action) => {
             state.countMin = action.payload.countMin
         })
-/*         .addCase(setCountMaxFromLocalStorage, (state, action) => {
-            state.countMin = action.payload.countMax
-        })
-        .addCase(setCountMinFromLocalStorage, (state, action) => {
-            state.countMin = action.payload.countMin
-        }) */
 })
 
+//thunk
+export const setCountLocalStorageTC = (countMax: number, countMin: number) => () => {
+    localStorage.setItem('maxValue', JSON.stringify(countMax))
+    localStorage.setItem('minValue', JSON.stringify(countMin))
+}
+
+export const getCountLocalStorageTC = () => (dispatch: Dispatch) => {
+    const storedMaxValue = localStorage.getItem('maxValue');
+    const storedMinValue = localStorage.getItem('minValue');
+
+    if (storedMaxValue) {
+        dispatch(changeCountMaxAC({ countMax: JSON.parse(storedMaxValue) }));
+    }
+    if (storedMinValue) {
+        dispatch(changeCountMinAC({ countMin: JSON.parse(storedMinValue) }));
+    }
+}
