@@ -5,18 +5,21 @@ import { valuesReducer } from "../model/setValues-reducer";
 import { countReducer } from "../model/count-reducer";
 
 // объединение reducer'ов с помощью combineReducers
-const rootReducer = combineReducers({
-  /*   tasks: tasksReducer,
-  todolists: todolistsReducer, */
+/* const rootReducer = combineReducers({
   message: messageReducer,
   setCounter: setCounterReducer,
   values: valuesReducer,
   count: countReducer,
-});
+}); */
 
 // создание store
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    message: messageReducer,
+    setCounter: setCounterReducer,
+    values: valuesReducer,
+    count: countReducer,
+  },
 });
 
 
