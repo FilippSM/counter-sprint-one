@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Button } from "../../component/Button";
 import { useAppDispatch } from "../../hook/useAppDispatch";
 import { useAppSelector } from "../../hook/useAppSelector";
-import { changeMessageAC, TypeMessage } from "../../model/message-reducer";
+
 import {
   changeCountMaxAC,
   changeCountMinAC,
@@ -15,6 +15,7 @@ import {
   changeMinValueAC,
 } from "../../model/setValues-reducer";
 import styles from "./styles.module.css";
+import { changeMessageAC, TypeMessage } from "../../model/count-slice";
 
 export const SetCounter = () => {
   const dispatch = useAppDispatch();

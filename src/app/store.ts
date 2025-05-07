@@ -1,8 +1,8 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { messageReducer } from "../model/message-reducer";
+import { configureStore } from "@reduxjs/toolkit";
 import { setCounterReducer } from "../model/setCounter-reducer";
 import { valuesReducer } from "../model/setValues-reducer";
-import { countReducer } from "../model/count-reducer";
+import { appReducer } from "../model/count-slice";
+
 
 // объединение reducer'ов с помощью combineReducers
 /* const rootReducer = combineReducers({
@@ -15,13 +15,11 @@ import { countReducer } from "../model/count-reducer";
 // создание store
 export const store = configureStore({
   reducer: {
-    message: messageReducer,
     setCounter: setCounterReducer,
     values: valuesReducer,
-    count: countReducer,
+    app: appReducer,
   },
 });
-
 
 // автоматическое определение типа всего объекта состояния
 export type RootState = ReturnType<typeof store.getState>;
@@ -33,9 +31,6 @@ export type AppDispatch = typeof store.dispatch;
   //localStorage.setItem('maxValue', JSON.stringify(store.getState())) 
   localStorage.setItem('maxValue', JSON.stringify(store.getState().values.maxValue))
 }) */
-
-
-
 
 // для возможности обращения к store в консоли браузера
 // @ts-ignore
