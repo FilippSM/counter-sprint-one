@@ -3,10 +3,10 @@ import { Button } from "../../component/Button";
 import { Tablo } from "../../component/Tablo";
 import { useAppSelector } from "../../hook/useAppSelector";
 
-import { selectValues } from "../../model/setValues-selectors";
+
 import styles from "./styles.module.css";
 import { useAppDispatch } from "../../hook/useAppDispatch";
-import { changeCountAC, selectCount, selectMessage} from "../../model/count-slice";
+import { changeCountAC, selectCount, selectMessage, selectValues} from "../../model/count-slice";
 
 
 export const Counter = () => {

@@ -1,6 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { setCounterReducer } from "../model/setCounter-reducer";
-import { valuesReducer } from "../model/setValues-reducer";
 import { appReducer } from "../model/count-slice";
 
 
@@ -15,8 +13,6 @@ import { appReducer } from "../model/count-slice";
 // создание store
 export const store = configureStore({
   reducer: {
-    setCounter: setCounterReducer,
-    values: valuesReducer,
     app: appReducer,
   },
 });

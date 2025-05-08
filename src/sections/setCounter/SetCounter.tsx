@@ -2,26 +2,14 @@ import { useEffect } from "react";
 import { Button } from "../../component/Button";
 import { useAppDispatch } from "../../hook/useAppDispatch";
 import { useAppSelector } from "../../hook/useAppSelector";
-
-import {
-  changeCountMaxAC,
-  changeCountMinAC,
-  getCountLocalStorageTC,
-  setCountLocalStorageTC,
-} from "../../model/setCounter-reducer";
-import { selectSetCounter } from "../../model/setCounter-selectors";
-import {
-  changeMaxValueAC,
-  changeMinValueAC,
-} from "../../model/setValues-reducer";
 import styles from "./styles.module.css";
-import { changeMessageAC, TypeMessage } from "../../model/count-slice";
+import { changeCountMaxAC, changeCountMinAC, changeMaxValueAC, changeMessageAC, changeMinValueAC, getCountLocalStorageTC, selectSetCounter, setCountLocalStorageTC, TypeMessage } from "../../model/count-slice";
 
 export const SetCounter = () => {
   const dispatch = useAppDispatch();
 
   const setCount = useAppSelector(selectSetCounter);
-  let countMax = setCount.countMax;
+  let countMax = setCount.countMax
   let countMin = setCount.countMin;
 
   // Загрузка значений из localStorage при монтировании компонента
@@ -106,7 +94,7 @@ export const SetCounter = () => {
     /*      localStorage.setItem('maxValue', JSON.stringify(countMax));
         localStorage.setItem('minValue', JSON.stringify(countMin)); */
 
-    dispatch(setCountLocalStorageTC(countMax, countMin));
+    dispatch(setCountLocalStorageTC({ countMax, countMin }));
   };
 
   return (
